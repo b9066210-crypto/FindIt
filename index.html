@@ -1,0 +1,195 @@
+
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FindIt - نظام المفقودات والموجودات</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <nav>
+        <h2>FindIt</h2>
+
+        <ul>
+
+            <li><a href="#homeSection" onclick="showSection('homeSection')">الرئيسية</a></li>
+            <li><a href="#reportsSection" onclick="showSection('reportsSection')">جميع البلاغات</a></li>
+
+            <li>
+                <a href="#reportSection"
+                   onclick="resetReportForm(); showSection('reportSection')">
+                    إضافة بلاغ
+                </a>
+            </li>
+
+
+            <li>
+                <a href="#statsSection" onclick="showSection('statsSection')">
+                    الإحصائيات
+                </a>
+            </li>
+
+
+        </ul>
+    </nav>
+</header>
+
+<main>
+
+    <section class="hero active-section" id="homeSection">
+        <h1>مرحباً بك في FindIt</h1>
+
+        <p>
+            منصة للإبلاغ عن الأشياء المفقودة والموجودة
+            ومساعدة أصحابها في العثور عليها.
+        </p>
+
+        <div class="hero-buttons">
+            <button type="button"
+                    class="lost-btn"
+                    id="lostButton">
+                الإبلاغ عن غرض مفقود
+            </button>
+
+            <button type="button"
+                    class="found-btn"
+                    id="foundButton">
+                الإبلاغ عن غرض موجود
+            </button>
+        </div>
+    </section>
+
+    <section class="report-section" id="reportSection">
+        <h2>إضافة بلاغ جديد</h2>
+
+        <form id="reportForm">
+
+            <label for="reportType">نوع البلاغ:</label>
+            <select id="reportType" required>
+                <option value="">اختاري نوع البلاغ</option>
+                <option value="lost">غرض مفقود</option>
+                <option value="found">غرض موجود</option>
+            </select>
+
+            <label for="itemName">اسم الغرض:</label>
+            <input type="text" id="itemName" required>
+
+            <label for="itemDescription">وصف الغرض:</label>
+            <textarea id="itemDescription" required></textarea>
+
+            <label for="itemLocation">
+                مكان الفقدان أو العثور:
+            </label>
+            <input type="text" id="itemLocation" required>
+
+            <label for="itemImage">صورة الغرض:</label>
+            <input type="file"
+                   id="itemImage"
+                   accept="image/*">
+
+            <button type="submit">حفظ البلاغ</button>
+
+        </form>
+    </section>
+
+    <section class="reports-section" id="reportsSection">
+        <h2>جميع البلاغات</h2>
+
+        <div class="search-container">
+            <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="ابحث عن غرض مفقود أو موجود..."
+            >
+        </div>
+
+        <div class="filter-container">
+            <label for="typeFilter">
+                تصفية حسب نوع البلاغ:
+            </label>
+
+            <select id="typeFilter">
+                <option value="all">جميع البلاغات</option>
+                <option value="lost">المفقودات</option>
+                <option value="found">الموجودات</option>
+            </select>
+        </div>
+
+        <div class="filter-container">
+            <label for="statusFilter">تصفية حسب حالة البلاغ:</label>
+
+            <select id="statusFilter">
+                <option value="all">جميع الحالات</option>
+                <option value="active">البلاغات المفتوحة</option>
+                <option value="completed">البلاغات المكتملة</option>
+            </select>
+        </div>
+
+        <div id="reportsContainer">
+        </div>
+
+    </section>
+
+
+    <section class="details-section" id="detailsSection">
+        <h2>تفاصيل الغرض</h2>
+
+        <div id="itemDetails">
+        </div>
+
+        <button type="button"
+                id="backToReports"
+                onclick="showSection('reportsSection')">
+            العودة إلى جميع البلاغات
+        </button>
+    </section>
+
+    <section class="stats-section" id="statsSection">
+
+        <h2>إحصائيات FindIt</h2>
+
+        <div class="stats-container">
+
+            <div class="stat-card">
+                <h3>إجمالي البلاغات</h3>
+                <p id="totalReports">0</p>
+            </div>
+
+            <div class="stat-card">
+                <h3>المفقودات</h3>
+                <p id="lostReports">0</p>
+            </div>
+
+            <div class="stat-card">
+                <h3>الموجودات</h3>
+                <p id="foundReports">0</p>
+            </div>
+
+            <div class="stat-card">
+                <h3>البلاغات المكتملة</h3>
+                <p id="completedReports">0</p>
+            </div>
+
+        </div>
+
+        <div class="progress-section">
+            <h3>نسبة البلاغات المكتملة</h3>
+
+            <div class="progress-bar">
+                <div id="completionBar"></div>
+            </div>
+
+            <p id="completionPercentage">0%</p>
+        </div>
+
+    </section>
+
+</main>
+
+<script src="script.js"></script>
+
+</body>
+</html>
